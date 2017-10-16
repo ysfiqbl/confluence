@@ -39,7 +39,7 @@ class Confluence(object):
 	DELETE /rest/api/space/<space_key>
 	"""
 	def delete_space(self, space_key):
-		space_delete__url = '{0}/space/{1}'.format(self.api_url, space_key)
+		space_delete_url = '{0}/space/{1}'.format(self.api_url, space_key)
 		return requests.delete(space_delete_url, auth=(self.username, self.password))
 	
 	"""

@@ -63,5 +63,5 @@ if __name__ == '__main__':
 		username = conf['username']
 		password = conf['password']
 		client = ConfluenceClient(url, username, password)
-		print(client.confluence.get_space('SPACEKEY').json())
+		print(client.confluence.delete_space('SPACEKEY').json())
 	
