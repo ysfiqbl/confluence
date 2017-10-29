@@ -32,6 +32,12 @@ class ConfluenceClient(object):
 				has_next = False
 		return page_names
 	
+
+	"""
+	Get count of all pages in a space
+	"""
+	def get_page_count(self, space_key):
+		return len(self.get_page_names(space_key))
 	
 	"""
 	Create an empty page in the give Confluence space
@@ -63,5 +69,31 @@ if __name__ == '__main__':
 		username = conf['username']
 		password = conf['password']
 		client = ConfluenceClient(url, username, password)
-		print(client.confluence.delete_space('SPACEKEY').json())
+		exit = False
+		while exit is False:
+			print('1. Create Space')
+			print('2. Delete Space')
+			print('3. Get Space pages')
+			print('0. Exit')
+			command = raw_input('Enter command #: ')
+			
+			if command is '1':
+				space_name = raw_input('Enter space name: ')
+				space_key = raw_input('Enter space key: ')
+				confirm = raw_input('Create space with (name, key) pair (' + space_name + ',' + space_key + ') [y/n]: ')
+				if confirm is 'y':
+					print(client.confluence.create_space(space_key, space_name).json())
+			
+			elif command is '2':
+				space_key = raw_input('Enter space key: ')
+				confirm = raw_input('Delete space with key ' + space_key + ' [y/n]: ')
+				if confirm is 'y':
+					print(client.confluence.delete_space(space_key).json())
+			elif command is '3':
+				space_key = raw_input('Enter space key: ')
+				print('Getting # pages for space ' + space_key)
+				print(client.get_page_count(space_key))
+			
+			else:
+				exit = True
 	
