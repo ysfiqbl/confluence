@@ -6,3 +6,7 @@ The main method of the `confluence-client.py` needs to be updated to suite your 
 <pre> python confluence-client.py config.json </pre>
 
 This code was run on `Python 2.7` and `Ubuntu 16.04`. It was tested on `Confluence 6.0.3`
+
+# TODO
+- Dockerize
+- Add move pages functionality
